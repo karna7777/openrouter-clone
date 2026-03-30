@@ -1,102 +1,97 @@
-import Image, { type ImageProps } from "next/image";
-import { Button } from "@repo/ui/button";
-import styles from "./page.module.css";
+import { Button } from "@/components/ui/Button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
+import { Zap, Shield, Cpu, Globe, Rocket, ArrowRight } from "lucide-react";
+import Link from "next/link";
 
-type Props = Omit<ImageProps, "src"> & {
-  srcLight: string;
-  srcDark: string;
-};
-
-const ThemeImage = (props: Props) => {
-  const { srcLight, srcDark, ...rest } = props;
-
+export default function LandingPage() {
   return (
-    <>
-      <Image {...rest} src={srcLight} className="imgLight" />
-      <Image {...rest} src={srcDark} className="imgDark" />
-    </>
-  );
-};
-
-export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <ThemeImage
-          className={styles.logo}
-          srcLight="turborepo-dark.svg"
-          srcDark="turborepo-light.svg"
-          alt="Turborepo logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>apps/web/app/page.tsx</code>
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new/clone?demo-description=Learn+to+implement+a+monorepo+with+a+two+Next.js+sites+that+has+installed+three+local+packages.&demo-image=%2F%2Fimages.ctfassets.net%2Fe5382hct74si%2F4K8ZISWAzJ8X1504ca0zmC%2F0b21a1c6246add355e55816278ef54bc%2FBasic.png&demo-title=Monorepo+with+Turborepo&demo-url=https%3A%2F%2Fexamples-basic-web.vercel.sh%2F&from=templates&project-name=Monorepo+with+Turborepo&repository-name=monorepo-turborepo&repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fturborepo%2Ftree%2Fmain%2Fexamples%2Fbasic&root-directory=apps%2Fdocs&skippable-integrations=1&teamSlug=vercel&utm_source=create-turbo"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://turborepo.dev/docs?utm_source"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
+    <div className="space-y-24 py-12">
+      {/* Hero Section */}
+      <section className="text-center space-y-8 max-w-4xl mx-auto">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-widest animate-bounce">
+          <Rocket className="w-3.5 h-3.5" />
+          The future of AI is here
         </div>
-        <Button appName="web" className={styles.secondary}>
-          Open alert
-        </Button>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com/templates?search=turborepo&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://turborepo.dev?utm_source=create-turbo"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to turborepo.dev →
-        </a>
-      </footer>
+        <h1 className="text-6xl md:text-7xl font-black tracking-tighter leading-tight">
+          Unified API for the <br />
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-primary animate-gradient font-black">
+            World&apos;s Best Models
+          </span>
+        </h1>
+        <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto">
+          One interface. Every model. Zero friction. Access Claude 3, GPT-4o, Llama 3, and more through a single, premium API gateway.
+        </p>
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-4">
+          <Link href="/dashboard">
+            <Button size="lg" className="w-full sm:w-auto h-14 px-8 text-base font-bold shadow-[0_0_20px_rgba(201,168,78,0.4)]">
+              Get Started for Free <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1" />
+            </Button>
+          </Link>
+          <Button variant="outline" size="lg" className="w-full sm:w-auto h-14 px-8 text-base font-bold">
+            View Documentation
+          </Button>
+        </div>
+      </section>
+
+      {/* Features Grid */}
+      <section className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {[
+          {
+            title: "Ultra-Low Latency",
+            description: "Distributed edge network ensures your requests reach LLMs with minimal delay.",
+            icon: Zap,
+            color: "text-blue-400"
+          },
+          {
+            title: "Enterprise Grade",
+            description: "SOC-2 compliant security and advanced encryption for every token sent.",
+            icon: Shield,
+            color: "text-green-400"
+          },
+          {
+            title: "Model Intelligence",
+            description: "Smart routing automatically selects the best model for your specific task.",
+            icon: Cpu,
+            color: "text-primary"
+          }
+        ].map((feature, i) => (
+          <Card key={i} className="group hover:bg-white/5 transition-all duration-300">
+            <CardHeader>
+              <div className={cn("w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform", feature.color)}>
+                <feature.icon className="w-6 h-6" />
+              </div>
+              <CardTitle className="text-2xl font-bold">{feature.title}</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-muted-foreground leading-relaxed">
+                {feature.description}
+              </p>
+            </CardContent>
+          </Card>
+        ))}
+      </section>
+
+      {/* Stats Section */}
+      <section className="rounded-3xl border border-white/5 bg-gradient-to-b from-secondary/50 to-background p-12 text-center space-y-12 premium-glow">
+        <h2 className="text-3xl font-bold">Trusted by 10,000+ Developers Worldwide</h2>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          {[
+            { label: "Requests / Day", value: "50M+" },
+            { label: "Active Models", value: "150+" },
+            { label: "Average Latency", value: "85ms" },
+            { label: "Uptime", value: "99.99%" }
+          ].map((stat, i) => (
+            <div key={i} className="space-y-2">
+              <div className="text-4xl font-black text-primary">{stat.value}</div>
+              <div className="text-sm text-muted-foreground font-bold uppercase tracking-widest">{stat.label}</div>
+            </div>
+          ))}
+        </div>
+      </section>
     </div>
   );
+}
+
+function cn(...inputs: any[]) {
+  return inputs.filter(Boolean).join(" ");
 }
