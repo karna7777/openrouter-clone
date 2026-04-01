@@ -11,7 +11,7 @@ import Features from './components/Features'
 import Pricing from './components/Pricing'
 import ClosingCTA from './components/ClosingCTA'
 import Footer from './components/Footer'
-import styles from './landing.module.css'
+import './landing.module.css'
 
 export default function LandingPage() {
   return (

@@ -210,12 +210,7 @@
   text-align: center;
 }
 
-/* Animated primary button */
-@property --btn-angle {
-  syntax: '<angle>';
-  initial-value: 0deg;
-  inherits: false;
-}
+
 
 .ctaPrimary {
   position: relative;

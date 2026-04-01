@@ -60,12 +60,7 @@
   line-height: 1.7;
 }
 
-/* Animated gradient border button */
-@property --btn-angle {
-  syntax: '<angle>';
-  initial-value: 0deg;
-  inherits: false;
-}
+
 
 .btnPrimary {
   position: relative;

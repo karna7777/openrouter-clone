@@ -68,3 +68,10 @@
   --font-body:    'DM Sans', sans-serif;
 }
 
+/* ── Shared CSS Houdini property (used for animated border buttons) ── */
+@property --btn-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
